@@ -45,7 +45,7 @@ class IndexController extends Action {
 	}
 
 	public function searchagendamento(){
-		$this->render('searchagendamento', 'layout1', 'Search');
+		$this->render('searchagendamento', 'layout_default', 'Search');
 	}
 
 	public function searchByIdAndPhone(){

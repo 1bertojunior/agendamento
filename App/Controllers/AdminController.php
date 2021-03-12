@@ -63,15 +63,6 @@ class adminController extends Action{
         public function calendar(){
             session_start();
 
-            echo '<pre>';
-            print_r($_GET);
-            echo '</pre>';
-
-            if(!isset($_GET['city'])) {
-                $agenda = Container::getModel('Agendamento');
-                echo $agenda->__get('city');
-            }
-
             $this->validaAuth(); //validar auth do usuário
         
             $this->getInfoUser(); //info do user auth
@@ -85,9 +76,12 @@ class adminController extends Action{
 
         public function listEvents(){
             session_start();
-            $this->validaAuth(); //validar auth do usuário
+            $this->validaAuth(); //validar auth do usuário           
 
-            $agendar = Container::getModel('Agendamento');                
+            $agendar = Container::getModel('Agendamento'); 
+
+            $agendar->__set('city', $_GET['city']);
+
             $agendar->listEvents();
         }
 

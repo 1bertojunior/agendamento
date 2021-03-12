@@ -128,8 +128,6 @@ class Route extends Bootstrap {
 			'controller' => 'indexController',
 			'action' => 'agendar',
 		);
-			
-
 
 		$this->setRoutes($routes);
 	}

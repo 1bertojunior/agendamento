@@ -345,7 +345,7 @@
         public function listEvents(){
             $query = "SELECT id, fk_city, nome, phone, fk_servico, data, data_end FROM agendamentos WHERE fk_city = :city";
             $stmt = $this->db->prepare($query);
-            $stmt->bindValue(':city', 2);
+            $stmt->bindValue(':city', $this->__get('city'));
             $stmt->execute();
             
             $events = [];
