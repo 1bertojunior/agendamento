@@ -5,11 +5,11 @@
 
                 <ul id="progress">
                     <li class="active-progress">City</li>
-                    <li>Data</li>
-                    <li>Horário</li>
+                    <li>Date</li>
+                    <li>Info</li>
                 </ul>
                 
-                <form id="form">
+                <form name="formagendamento" class="form" id="form" action="/schedule" method="POST">
                     <?php if($this->view->erroCadastro ) { ?>  <!-- $this->view->erroCadastro -->
                                 <div class="alert alert-danger" role="alert" style="margin:0;">
                                     Erro ao realizar o cadastro!
@@ -40,7 +40,7 @@
                         <h3>Horário</h3>
                             <div class="input-group data">
                                 <select name="hora" class="form-control" id="hour" required>
-                                    <option>Nenhum horário disponivel</option>
+                                    <option value="">Nenhum horário disponivel</option>
                                 </select>
                                 <div class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
@@ -62,7 +62,8 @@
                                 onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"  required>
                         <div>
                             <button class="prev botoes" id="prevThird" type="button">Prev</button>
-                            <button class="send botoes" id="send" type="button">Enviar</button>
+                            <button class="send botoes" id="send" type="submit">Enviar</button>
+                             <!-- class="btn btn-success btn-lg btn-block" onclick="return valiForm()" -->
                         </div>
                     </div>
 

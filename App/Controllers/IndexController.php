@@ -83,6 +83,7 @@ class IndexController extends Action {
 
 	//gravar agendamento
 	public function agendar(){
+
 		$agendar = Container::getModel('Agendamento');
 
 		$date = $agendar->formateDate($_POST['data']);
@@ -93,11 +94,18 @@ class IndexController extends Action {
 		$end =  $agendar->datePatternDb($date, $horas);
 
 		$agendar->__set('city', $_POST['city']);
-		$agendar->__set('name', $_POST['nome']);
+		$agendar->__set('name', $_POST['name']);
 		$agendar->__set('phone', $_POST['phone']);
 		$agendar->__set('service', $service);
 		$agendar->__set('start', $start);
 		$agendar->__set('end', $end);
+
+		echo $agendar->__get("city") . "<br>";
+		echo $agendar->__get("name"). "<br>";
+		echo $agendar->__get("phone"). "<br>";
+		echo $agendar->__get("service"). "<br>";
+		echo $agendar->__get("start"). "<br>";
+		echo $agendar->__get("end"). "<br>";
 
 		//validar
 		if($agendar->validar() && count($agendar->getAgendamentoDouble()) == 0){
