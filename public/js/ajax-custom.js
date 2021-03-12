@@ -1,8 +1,11 @@
-function requestHorario(city,data){
+function requestHorario(){
+
+  let city = getCitySelected(); // get city selected
+  let date = getDateSelected(); // get date selected
+
   document.getElementById('hour').innerHTML = ''
 
-  // verificar se já existe a imagemd e loading
-  if(!document.getElementById('loading')){
+  if(!document.getElementById('loading')){ // verificar se já existe a imagemd e loading
     //incluir gif de loading na pagina
     let imgLoading = document.createElement('img');
     imgLoading.src = 'img/loading.gif';
@@ -12,8 +15,8 @@ function requestHorario(city,data){
   }
       
   let ajax = new XMLHttpRequest();
-  //conexão estabelecida com o servidor - state = 1
-  ajax.open('GET', 'ajaxAdmin?date='+data+'&city='+city);
+  //conexão estabelecida com o servidor = state = 1
+  ajax.open('GET', 'ajaxAdmin?date='+date+'&city='+city);
   // /ajaxAdmin?date=2021-02-01&city=1
   
   //progresso da requisição

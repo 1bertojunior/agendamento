@@ -1,12 +1,10 @@
 
-console.log('123')
 $(document).ready(function(){
-  /*initialisation des composants*/
-  initComponent();
+  initComponent(); /*initialisation des composants*/
 });
   
 var dateHolidays = ['2020-11-02', '2020-11-15', '2020-12-25']; //feriados
-let daysOfWeekDisabled = ["1","2"]; // dias da semana que ñ off
+let daysOfWeekDisabled = ["1","2"]; // dias da semana que estão off
   
 /* Fonction d'initialisation des composants */
 function initComponent(){

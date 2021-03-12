@@ -21,9 +21,9 @@ class IndexController extends Action {
 	public function agendamento(){
 		$agenda = Container::getModel('Agendamento');
 		$this->view->erroCadastro = false;
-		$this->view->dados = [
-			'city' => $agenda->getCity()
-		];
+		// $this->view->dados = [
+		// 	'city' => $agenda->getCity()
+		// ];
 		
 		$this->render('agendamento', 'layout_default', 'Agendamento online');
 	}
@@ -95,17 +95,18 @@ class IndexController extends Action {
 
 		$agendar->__set('city', $_POST['city']);
 		$agendar->__set('name', $_POST['name']);
+		$agendar->__set('surname', $_POST['surname']);
 		$agendar->__set('phone', $_POST['phone']);
 		$agendar->__set('service', $service);
 		$agendar->__set('start', $start);
 		$agendar->__set('end', $end);
 
-		echo $agendar->__get("city") . "<br>";
-		echo $agendar->__get("name"). "<br>";
-		echo $agendar->__get("phone"). "<br>";
-		echo $agendar->__get("service"). "<br>";
-		echo $agendar->__get("start"). "<br>";
-		echo $agendar->__get("end"). "<br>";
+		// echo $agendar->__get("city") . "<br>";
+		// echo $agendar->__get("name"). "<br>";
+		// echo $agendar->__get("phone"). "<br>";
+		// echo $agendar->__get("service"). "<br>";
+		// echo $agendar->__get("start"). "<br>";
+		// echo $agendar->__get("end"). "<br>";
 
 		//validar
 		if($agendar->validar() && count($agendar->getAgendamentoDouble()) == 0){
@@ -124,6 +125,7 @@ class IndexController extends Action {
 				'phone' => $agendar->__get('phone'),
 				'service' => $agendar->__get('service'),
 				'name' => $agendar->__get('name'),
+				'surname' => $agendar->__get('surname'),
 				'date' => $agendar->__get('start')
 			];
 

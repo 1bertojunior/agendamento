@@ -36,9 +36,9 @@
                             <option value="2">Service 2 - 1h</option>
                         </select>
                         <h3>Data</h3>
-                        <input type="text"  name="data" class="form-control campoData" id="datepicker-default"  readonly="true" onchange="getData(this)" required>
+                        <input type="text"  name="data" class="form-control campoData" id="datepicker-default"  readonly="true" onchange="requestHorario()" required>
                         <h3>Horário</h3>
-                            <div class="input-group data">
+                        <div class="input-group data">
                                 <select name="hora" class="form-control" id="hour" required>
                                     <option value="">Nenhum horário disponivel</option>
                                 </select>
@@ -66,9 +66,14 @@
                              <!-- class="btn btn-success btn-lg btn-block" onclick="return valiForm()" -->
                         </div>
                     </div>
-
+                        
                 </form>
+                <div class="form-group">
+                    <a class="btn btn-primary" href='/searchagendamento' id="pagina">Consultar agendamento <span class="glyphicon glyphicon-map-marker"></span></a>
+                    <a class="btn btn-danger" href='#' id="pagina">Excluir agendamento<span class="glyphicon glyphicon-map-marker"></span></a>
+                </div>
             </section>
+            
         </div>
     </div>
 </div>

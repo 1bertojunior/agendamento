@@ -8,6 +8,7 @@
         private $id;
         private $city;
         private $name;
+        private $surname;
         private $phone;
         private $service;
         private $start;
@@ -269,10 +270,11 @@
 
         //salvar agendamento no db
         public function save(){
-            $query = "INSERT INTO agendamentos (fk_city, nome, phone, fk_servico, data, data_end) VALUES (:city, :name, :phone, :service, :start, :end)";
+            $query = "INSERT INTO agendamentos (fk_city, nome, surname, phone, fk_servico, data, data_end) VALUES (:city, :name, :surname, :phone, :service, :start, :end)";
             $stmt = $this->db->prepare($query);
             $stmt->bindValue(':city', $this->__get('city'));
             $stmt->bindValue(':name', $this->__get('name'));
+            $stmt->bindValue(':surname', $this->__get('surname'));
             $stmt->bindValue(':phone', $this->__get('phone'));
             $stmt->bindValue(':service', $this->__get('service'));
             $stmt->bindValue(':start', $this->__get('start'));
@@ -284,7 +286,7 @@
         
         //metodos get date AND city
         public function getCity(){
-            if( !isset($_REQUEST['city']) || !$this->valiCity($_REQUEST['city']) ) header("Location: city");
+            if( !isset($_REQUEST['city']) || !$this->valiCity($_REQUEST['city'])) return false;
             return $_REQUEST['city'];
         }
 

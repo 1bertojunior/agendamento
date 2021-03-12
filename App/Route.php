@@ -14,18 +14,6 @@ class Route extends Bootstrap {
 			'action' => 'index'
 		);
 
-		$routes['city'] = array(
-			'route' => '/city',
-			'controller' => 'indexController',
-			'action' => 'city'
-		);
-
-		$routes['getCity'] = array(
-			'route' => '/getCity',
-			'controller' => 'indexController',
-			'action' => 'getCity'
-		);
-
 		$routes['agendamento'] = array(
 			'route' => '/agendamento',
 			'controller' => 'indexController',
@@ -128,6 +116,18 @@ class Route extends Bootstrap {
 			'controller' => 'indexController',
 			'action' => 'agendar',
 		);
+
+		// $routes['city'] = array(
+		// 	'route' => '/city',
+		// 	'controller' => 'indexController',
+		// 	'action' => 'city'
+		// );
+
+		// $routes['getCity'] = array(
+		// 	'route' => '/getCity',
+		// 	'controller' => 'indexController',
+		// 	'action' => 'getCity'
+		// );
 
 		$this->setRoutes($routes);
 	}

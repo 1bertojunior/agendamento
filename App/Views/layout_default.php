@@ -32,6 +32,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                /* margin-top: 10px; */
             }
 
             #form{
@@ -42,6 +43,7 @@
                 box-shadow: 0 0 15px 1px rgba(0,0, 0.2);
                 padding: 20px 30px;
                 margin: 0 10%;
+                margin-bottom: 15px;
             }
 
             #form .step{
@@ -211,6 +213,8 @@
 
         //firts
         nextFirts.onclick = function() {
+
+            // PROGRESS
             atual =  (this.parentNode).parentNode; //pegando elemento pai
             next = atual.nextElementSibling; //pegando o proximo elemento
 
@@ -221,6 +225,9 @@
             progress = progress.children[i]; //progress
             progress.classList.add("active-progress") //progress
             i++;
+
+            // request horario
+            requestHorario();
         }
 
         //sec

@@ -1,17 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getTheme(){
     const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
     

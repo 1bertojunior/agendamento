@@ -13,23 +13,27 @@ var meses = [
     "Dezembro"
 ];
 
-// pegar data
-function getData(data){
-    let city = document.getElementById('city')
-    city = city.value
-    data = formatarData(data)
-    //console.log(data)//
+// get city
+function getCitySelected(){
+    var city = document.getElementById('city');
+    city = city.options[city.selectedIndex].value;
+    return city;
+}
 
-    requestHorario(city, data)
+// pegar data
+function getDateSelected(){
+    let date = document.querySelector("#datepicker-default");
+    date = formatarData(date.value)
+    return date;
 }
   
 function formatarData(data) {
-    data = data.value.split(" ")
+    data = data.split(" ")
     data.reverse()
     data[1] = meses.indexOf(data[1], [i = 0])+1
     data = data.join('-')
     data = new Date(data)
-    //addzero
+    // //addzero
     data = data.getFullYear() +"-"+ addZero((data.getMonth()+1)) +"-"+ addZero(data.getDate().toString())
     
     return data
