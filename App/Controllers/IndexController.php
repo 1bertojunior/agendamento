@@ -25,7 +25,7 @@ class IndexController extends Action {
 			'city' => $agenda->getCity()
 		];
 		
-		$this->render('agendamento', 'layout1', 'Agendamento online');
+		$this->render('agendamento', 'layout_default', 'Agendamento online');
 	}
 
 	public function ajaxAdmin(){
@@ -45,7 +45,7 @@ class IndexController extends Action {
 	}
 
 	public function searchagendamento(){
-		$this->render('searchagendamento', 'layout_default', 'Search');
+		$this->render('searchagendamento', 'layout1', 'Search');
 	}
 
 	public function searchByIdAndPhone(){

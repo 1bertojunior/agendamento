@@ -1,5 +1,5 @@
 
-
+console.log('123')
 $(document).ready(function(){
   /*initialisation des composants*/
   initComponent();
