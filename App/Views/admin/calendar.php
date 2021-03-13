@@ -3,7 +3,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     const city = document.getElementById('city');
-    // console.log(city.value)
+    var dados;
     
     initCalendar(city.value)
 
@@ -44,16 +44,10 @@
           };
         },
 
-        //click in event open the modal
+        //click in event exists and open the modal
         eventClick: function(info) {
-          addValueModal('id', info.event.id)
-          // addValueModal('city', info.event.city)
-          addValueModal('name', info.event.title)
-          // addValueModal('phone', info.event.phone)
-          // addValueModal('service', info.event.service)
-          addValueModal('date', formatDate(info.event.start,1))
-          addValueModal('hour', formatDate(info.event.start,2) +' às '+ formatDate(info.event.end,2));
-          console.log(info.event)
+          ajaxSchedules(info.event.id)
+
           var myModal = new bootstrap.Modal(document.getElementById('visualizar'))
           myModal.show()    
         
@@ -65,8 +59,6 @@
           var myModal = new bootstrap.Modal(document.getElementById('cadastrar'))
           myModal.show() 
         }
-
-
         
       });
 
@@ -84,6 +76,38 @@
   function formatDate(d, m){
     return m == 1 ? d.getDate() +'/'+ (d.getMonth())+1 +'/'+ d.getFullYear() : d.getHours()+':'+d.getMinutes();
   }
+
+  function ajaxSchedules(id){
+    let ajax = new XMLHttpRequest();
+    //conexão estabelecida com o servidor = state = 1
+    ajax.open('GET', '/admin/getdatabyid?id='+id);
+
+    //progresso da requisição
+    ajax.onreadystatechange = () => {
+      // requisição finalizada
+      if(ajax.readyState == 4 && ajax.status == 200){
+        var scheduling = JSON.parse(ajax.responseText) //arr horarios convertido em JSON
+        if(scheduling != "undefined "){
+          addValueModal('idDados',scheduling['id'])
+          addValueModal('cityDados',scheduling['city'])
+          addValueModal('nameDados',scheduling['name'])
+          addValueModal('surnameDados',scheduling['surname'])
+          addValueModal('phoneDados',scheduling['phone'])
+          addValueModal('serviceDados',scheduling['service'])
+          addValueModal('dateDados',scheduling['start'])
+          addValueModal('hourDados',scheduling['end'])
+          addValueModal('createdDados',scheduling['created'])
+        }
+        
+      }
+      
+      if(ajax.readyState == 4 && ajax.status == 404) console.log('STRF_status: 404') //error
+
+    }
+
+    ajax.send()
+  }
+  
 
 </script>
 
@@ -113,22 +137,24 @@
       </div>
       <div class="modal-body">
         <dl class="row">
-          <dt class="col-sm-3 text">ID</dt>
-          <dd class="col-sm-9" id="id"></dd>
+          <dt class="col-sm-3 text">N° reserva</dt>
+          <dd class="col-sm-9" id="idDados"></dd>
           <dt class="col-sm-3 text">Cidade</dt>
-          <dd class="col-sm-9" id="city"></dd>
+          <dd class="col-sm-9" id="cityDados"></dd>
           <dt class="col-sm-3 text">Nome</dt>
-          <dd class="col-sm-9" id="name"></dd>
+          <dd class="col-sm-9" id="nameDados"></dd>
+          <dt class="col-sm-3 text">Sobrenome</dt>
+          <dd class="col-sm-9" id="surnameDados"></dd>
           <dt class="col-sm-3 text">Telefone</dt>
-          <dd class="col-sm-9" id="phone"></dd>
+          <dd class="col-sm-9" id="phoneDados"></dd>
           <dt class="col-sm-3 text">Serviço</dt>
-          <dd class="col-sm-9" id="service"></dd>
+          <dd class="col-sm-9" id="serviceDados"></dd>
           <dt class="col-sm-3 text">Data</dt>
-          <dd class="col-sm-9" id="date"></dd>
+          <dd class="col-sm-9" id="dateDados"></dd>
           <dt class="col-sm-3 text">Horario</dt>
-          <dd class="col-sm-9" id="hour"></dd>
-          <dt class="col-sm-3 text" id="created">Criando em</dt>
-          <dd class="col-sm-9"></dd>
+          <dd class="col-sm-9" id="hourDados"></dd>
+          <dt class="col-sm-3 text">Criando em</dt>
+          <dd class="col-sm-9" id="createdDados"></dd>
         </dl>
         
       </div>

@@ -208,23 +208,18 @@
         const prevSec = document.querySelector('#prevSec'); //prev Sec 
         const nextSec = document.querySelector('#nextSec'); //next Sec
         const prevThird = document.querySelector('#prevThird'); //prev Third
-        var atual, prev, next;
-        var i = 1;
-
+        var atual, prev, next, index = 1;
+        
         //firts
         nextFirts.onclick = function() {
-
             // PROGRESS
             atual =  (this.parentNode).parentNode; //pegando elemento pai
             next = atual.nextElementSibling; //pegando o proximo elemento
-
             atual.classList.remove("active"); // hide
             next.classList.add("active"); //show
-
             var progress = document.querySelector('#progress'); //progress
-            progress = progress.children[i]; //progress
+            progress = progress.children[index++]; //progress
             progress.classList.add("active-progress") //progress
-            i++;
 
             // request horario
             requestHorario();
@@ -239,9 +234,8 @@
             prev.classList.add("active"); //show
 
             var progress = document.querySelector('#progress'); //progress
-            progress = progress.children[i-1];
+            progress = progress.children[--index];
             progress.classList.remove("active-progress")
-            i--;
         }
 
         nextSec.onclick = function() {
@@ -252,9 +246,8 @@
             next.classList.add("active"); //show
             
             var progress = document.querySelector('#progress'); //progress
-            progress = progress.children[i]; //progress
-            progress.classList.add("active-progress") //progress
-            i++    
+            progress = progress.children[index]; //progress
+            progress.classList.add("active-progress") //progress 
         }
 
         //third
@@ -266,9 +259,8 @@
             prev.classList.add("active"); //show
 
             var progress = document.querySelector('#progress'); //progress
-            progress = progress.children[i-1];
+            progress = progress.children[index];
             progress.classList.remove("active-progress")
-            i--;
         }
     </script>
 

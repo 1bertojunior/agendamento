@@ -107,6 +107,18 @@ class adminController extends Action{
             $usuario->__set('id',$_SESSION['id']);
             return $this->view->getInfoUser = $usuario->getInfoUser(); //info do user auth
         }
+
+        //pegardados por id
+        public function getDataById(){
+            session_start();
+            $this->validaAuth(); //validar auth do usuário
+            
+            $agendar = Container::getModel('Agendamento'); 
+            $agendar->__set('id', $_GET['id'] ?? "null");
+
+            $agendar->getDataById();
+
+        }
     }
     
 ?>

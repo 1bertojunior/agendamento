@@ -367,6 +367,29 @@
 
         }
 
+        public function getDataById(){
+            $query = "SELECT id, fk_city, nome, surname, phone, fk_servico, data, data_end, created
+                FROM agendamentos WHERE id = :id";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->__get('id'));
+            $stmt->execute();
+            
+            $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $schedules = [
+                    'id' => $row['id'],
+                    'city' => $row['fk_city'],
+                    'name' => $row['nome'],
+                    'surname' => $row['surname'],
+                    'phone' => $row['phone'],
+                    'service' => $row['fk_servico'],
+                    'start' => $row['data'],
+                    'end' => $row['data_end'],
+                    'created' => $row['created'],
+            ];
+
+            echo json_encode($schedules);
+        }
+
         
 
     }

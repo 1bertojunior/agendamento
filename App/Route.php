@@ -117,6 +117,12 @@ class Route extends Bootstrap {
 			'action' => 'agendar',
 		);
 
+		$routes['databyid'] = array(
+			'route' => '/admin/getdatabyid',
+			'controller' => 'adminController',
+			'action' => 'getDataById',
+		);
+
 		// $routes['city'] = array(
 		// 	'route' => '/city',
 		// 	'controller' => 'indexController',
