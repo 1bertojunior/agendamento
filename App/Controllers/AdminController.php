@@ -63,10 +63,11 @@ class adminController extends Action{
         public function calendar(){
             session_start();
 
-            $this->validaAuth(); //validar auth do usuário
-        
+            $this->validaAuth(); //validar auth do usuário        
             $this->getInfoUser(); //info do user auth
 
+            $this->view->dados['city'] = $_GET['city'] ?? "1";
+            
             $this->render("calendar", "layout_admin", "Calendário", true);
         }
 

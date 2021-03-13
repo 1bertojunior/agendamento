@@ -2,36 +2,22 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
+    const city = document.getElementById('city');
+    // console.log(city.value)
     
-    initCalendar()
+    initCalendar(city.value)
 
     function initCalendar(city=1){
       var calendar = new FullCalendar.Calendar(calendarEl, {
       //initialDate: '2021-02-14',
-
         locale: 'pt-br',
         initialView: 'timeGridDay', //iniciar com o dia
         nowIndicator: true, //exibir um marcador indicando a hora atual.
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'city1 city2 dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
-
-        customButtons: {
-          city1: {
-            text: 'Belém-PI',
-            click: function() {
-              initCalendar(1);
-            }
-          },
-          city2: {
-            text: 'Padre Marcos',
-            click: function() {
-              initCalendar(2);
-            }
-          }
-        },  
 
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
@@ -88,9 +74,6 @@
 
     }
     
-    
-
-
   });
 
   function addValueModal(id, value){
