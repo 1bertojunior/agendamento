@@ -43,8 +43,9 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <a href="/delete?id=&phone=" class="btn btn-danger delete">Apagar</a>
+        <button type="button" class="btn btn-primary">Editar</button>
       </div>
     </div>
   </div>
@@ -114,7 +115,7 @@
           
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button class="btn btn-success" type="submit">Enviar</button>
         </div>
       </div>

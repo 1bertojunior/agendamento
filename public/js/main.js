@@ -108,7 +108,6 @@ function ajaxSchedules(id){
 }
 
 
-
 //## MANIPULAR HTML 
 function addValueModal(id, value, o=false){
     var div = document.querySelector(id);  //document.getElementById(id);
@@ -162,10 +161,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //click in event exists and open the modal
         eventClick: function(info) {
-          ajaxSchedules(info.event.id)
+            ajaxSchedules(info.event.id)
+            
+            document.querySelector('.modal-footer .delete').href = '/delete?id='+info.event.id+'&phone='+document.querySelector('#phone');
 
-          var myModal = new bootstrap.Modal(document.getElementById('visualizar'))
-          myModal.show()    
+            var myModal = new bootstrap.Modal(document.getElementById('visualizar'))
+            //add button remover
+            myModal.show()    
         
         },
 
@@ -173,7 +175,8 @@ document.addEventListener('DOMContentLoaded', function() {
         selectTable: true,
         select: function(info){
           addValueModal('#modal-cadastrar #datepicker-default', formatarData3(info.start), true);
-          addValueModal('#modal-cadastrar #hora',  formateHours(info.start), true)          
+          addValueModal('#modal-cadastrar #hora',  formateHours(info.start), true);
+
           var myModal = new bootstrap.Modal(document.getElementById('cadastrar'))
           myModal.show() 
         }
