@@ -97,7 +97,6 @@ function requestHorario(date){
   ajax.send()
 }
 
-
 //função add option ao select
 function addOption(valor, t=false){
   if(t) var option = new Option(valor);

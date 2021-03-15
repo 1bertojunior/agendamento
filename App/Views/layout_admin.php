@@ -32,7 +32,7 @@
 
     <!-- JS custom -->
     <script src="js/ajax-custom.js"></script> 
-    <script src="js/logica-custom.js"></script> 
+    <script src="js/main.js"></script> 
     
 </head>
 
