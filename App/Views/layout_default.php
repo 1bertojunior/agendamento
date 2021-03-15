@@ -16,7 +16,7 @@
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
 
-    <script src="js/ajax-custom.js"></script> 
+    <!-- <script src="js/ajax-custom.js"></script>  -->
     <script src="js/logica-custom.js"></script> 
     <script src="js/main.js"></script> 
 

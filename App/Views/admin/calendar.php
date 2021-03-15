@@ -57,8 +57,7 @@
         selectTable: true,
         select: function(info){
           addValueModal('#modal-cadastrar #datepicker-default', formatarData3(info.start), true);
-          console.log(info.start)
-          
+          addValueModal('#modal-cadastrar #hora',  formateHours(info.start), true)          
           var myModal = new bootstrap.Modal(document.getElementById('cadastrar'))
           myModal.show() 
         }
@@ -70,6 +69,7 @@
     }
     
   });
+
 
   function addValueModal(id, value, o=false){
     var div = document.querySelector(id);  //document.getElementById(id);
@@ -114,7 +114,10 @@
 
     ajax.send()
   }
-  
+
+  function formateHours(d){
+    return addZero(d.getHours()) +":"+ addZero(d.getMinutes()) +":"+ addZero(d.getSeconds());
+  }
 
 </script>
 
@@ -128,9 +131,6 @@
   <!-- <div class="input-group data"> -->
   <input name="city" id="city" type="number" value="<?= $this->view->dados['city'];?>" required style="display: none;" required> 
 </div>
-
-
-
 
 <div id='calendar'></div>
 
@@ -216,9 +216,7 @@
             </div>  
             <label class="col-sm-2 col-form-label">Horario</label>
             <div class="col-sm-10">
-              <select name="hora" class="form-control" id="hour" required>
-                <option>Nenhum horário disponivel</option>
-              </select>
+            <input type="text"  name="hora" class="form-control campoData" id="hora"  readonly="true" required>  
               <div class="input-group-addon">
                 <span class="glyphicon glyphicon-time"></span>
               </div>
