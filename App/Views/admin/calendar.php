@@ -1,7 +1,7 @@
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+    var calendarEl = document.getElementById('calendar'); //getCitySelected();
     const city = document.getElementById('city');
     var dados;
     
@@ -56,6 +56,9 @@
         //click in event
         selectTable: true,
         select: function(info){
+          addValueModal('#modal-cadastrar #datepicker-default', formatarData3(info.start), true);
+          console.log(info.start)
+          
           var myModal = new bootstrap.Modal(document.getElementById('cadastrar'))
           myModal.show() 
         }
@@ -68,9 +71,13 @@
     
   });
 
-  function addValueModal(id, value){
-    var div = document.getElementById(id);
-    div.innerHTML = value
+  function addValueModal(id, value, o=false){
+    var div = document.querySelector(id);  //document.getElementById(id);
+    o ? div.value = value :  div.innerHTML = value;
+  }
+
+  function formatarData3(d){
+    return d.getDate() +" "+ meses[d.getMonth()] +" "+ d.getFullYear();
   }
 
   function formatDate(d, m){
@@ -88,15 +95,15 @@
       if(ajax.readyState == 4 && ajax.status == 200){
         var scheduling = JSON.parse(ajax.responseText) //arr horarios convertido em JSON
         if(scheduling != "undefined "){
-          addValueModal('idDados',scheduling['id'])
-          addValueModal('cityDados',scheduling['city'])
-          addValueModal('nameDados',scheduling['name'])
-          addValueModal('surnameDados',scheduling['surname'])
-          addValueModal('phoneDados',scheduling['phone'])
-          addValueModal('serviceDados',scheduling['service'])
-          addValueModal('dateDados',scheduling['start'])
-          addValueModal('hourDados',scheduling['end'])
-          addValueModal('createdDados',scheduling['created'])
+          addValueModal('#modal-vizualizar #idDados',scheduling['id'])
+          addValueModal('#modal-vizualizar #cityDados',scheduling['city'])
+          addValueModal('#modal-vizualizar #nameDados',scheduling['name'])
+          addValueModal('#modal-vizualizar #surnameDados',scheduling['surname'])
+          addValueModal('#modal-vizualizar #phoneDados',scheduling['phone'])
+          addValueModal('#modal-vizualizar #serviceDados',scheduling['service'])
+          addValueModal('#modal-vizualizar #dateDados',scheduling['start'])
+          addValueModal('#modal-vizualizar #hourDados',scheduling['end'])
+          addValueModal('#modal-vizualizar #createdDados',scheduling['created'])
         }
         
       }
@@ -135,7 +142,7 @@
         <h5 class="modal-title">Detalhes</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="modal-vizualizar">
         <dl class="row">
           <dt class="col-sm-3 text">N° reserva</dt>
           <dd class="col-sm-9" id="idDados"></dd>
@@ -174,19 +181,20 @@
         <h5 class="modal-title">Cadastrar</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="modal-cadastrar">
         
         <form>
           <div class="form-grup row">
             <label class="col-sm-2 col-form-label">Nome</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control"></input>
+              <input type="text" class="form-control" id="name"></input>
             </div>
+
             <label class="col-sm-2 col-form-label">Telefone</label>
             <div class="col-sm-10">
               <input Placeholder="(00) 00000-0000" type="text" name="phone" class="form-control" id="phone" name="phone"
                                 onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"  required>
-            </div>  
+            </div> 
             <label class="col-sm-2 col-form-label">Service</label>
             <div class="col-sm-10">
               <select name="servico" id="service" class="form-control" required>

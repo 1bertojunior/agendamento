@@ -29,6 +29,11 @@
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
+    <!-- JS custom -->
+    <script src="js/ajax-custom.js"></script> 
+    <script src="js/logica-custom.js"></script> 
+    
 </head>
 
 <body id="page-top">
