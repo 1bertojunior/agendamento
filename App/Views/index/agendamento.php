@@ -20,7 +20,7 @@
                     <div id="step1" class="step active">
                         <h2>Cidade</h2>
                         <h3>Escolha a  cidade sede</h3>
-                        <select name="city" id="city" class="custom-select">
+                        <select name="city" id="city" class="custom-select" required>
                                 <option value="1">Belém do Piauí - PI </option>
                             <option value="2">Padre Marcos - PI</option>
                         </select>
@@ -31,7 +31,7 @@
                     <div id="step2" class="step">
                         <h2>Serviço, data e horário</h2>
                         <h3>Serviço</h3>
-                        <select name="servico" id="service" class="custom-select">
+                        <select name="servico" id="service" class="custom-select" required>
                             <option value="1">Service 1 - 30m</option>
                             <option value="2">Service 2 - 1h</option>
                         </select>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div id="step3" class="step">
-                        <h2>Horário</h2>
+                        <h2>Dados pessoais</h2>
                         <h3>Nome</h3>
                         <input type="text" name="name" placeholder="Seu nome" required>
                         <h3>Sobrenome</h3>

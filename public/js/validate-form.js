@@ -149,102 +149,102 @@
 // }
 
 //function validate city
-function valiCity(attr){
-  return attr == 1 || attr == 2 ? true : false;
-}
+// function valiCity(attr){
+//   return attr == 1 || attr == 2 ? true : false;
+// }
 
 
 
 
-//formatted date
-function getFormattedDate(d){
-  d = d.split(" "); //transforme string in array 
-  d = (d[2]) +"-"+ addZero(meses.indexOf(d[1])+1) +"-"+  addZero((d[0]));
-  return new Date(d);
-}
-//function add zero in number < 10
-addZero = (attr) => attr < 10 ? '0' + attr : attr;
+// //formatted date
+// function getFormattedDate(d){
+//   d = d.split(" "); //transforme string in array 
+//   d = (d[2]) +"-"+ addZero(meses.indexOf(d[1])+1) +"-"+  addZero((d[0]));
+//   return new Date(d);
+// }
+// //function add zero in number < 10
+// addZero = (attr) => attr < 10 ? '0' + attr : attr;
 
-//function add AND remove text Warning
-function addWarningInput(campo, remove=false, msg ="*Campo obrigatório!" ) {
-  var parentEl = document.getElementById("form-grupo "+campo); // Buscar elemento pai
-  var warning =parentEl.children;
-  var exist = [false, false];
-  for(let i=0; i<parentEl.children.length; i++) if( parentEl.children[i].id == "txtWarningInput") exist = [i,true];   
+// //function add AND remove text Warning
+// function addWarningInput(campo, remove=false, msg ="*Campo obrigatório!" ) {
+//   var parentEl = document.getElementById("form-grupo "+campo); // Buscar elemento pai
+//   var warning =parentEl.children;
+//   var exist = [false, false];
+//   for(let i=0; i<parentEl.children.length; i++) if( parentEl.children[i].id == "txtWarningInput") exist = [i,true];   
   
-  if(remove){
-    if(exist[1]) parentEl.children[exist[0]].remove();  
-  }else{
-    if(!exist[1]){
-      var el = document.createElement('p'); // Criar elemento
-      var text = document.createTextNode(msg); // Criar o nó de texto
-      el.appendChild(text); // Anexar o nó de texto ao elemento h1
-      el.style = "color: red"; // add color red at the text
-      el.setAttribute("id", "txtWarningInput");
-      parentEl.appendChild(el); // Agora sim, inserir (anexar) o elemento filho (titulo) ao elemento pai (body)
-    }
-  }
+//   if(remove){
+//     if(exist[1]) parentEl.children[exist[0]].remove();  
+//   }else{
+//     if(!exist[1]){
+//       var el = document.createElement('p'); // Criar elemento
+//       var text = document.createTextNode(msg); // Criar o nó de texto
+//       el.appendChild(text); // Anexar o nó de texto ao elemento h1
+//       el.style = "color: red"; // add color red at the text
+//       el.setAttribute("id", "txtWarningInput");
+//       parentEl.appendChild(el); // Agora sim, inserir (anexar) o elemento filho (titulo) ao elemento pai (body)
+//     }
+//   }
 
-}
+// }
 
-//function validadet hour
-function valiHorario(atrr){
-  for(let i = 0; i<7; i++) if(atrr == horarios[i]) return true;
-  return false;
-}
+// //function validadet hour
+// function valiHorario(atrr){
+//   for(let i = 0; i<7; i++) if(atrr == horarios[i]) return true;
+//   return false;
+// }
 
-//pegar select 
-function getSelect(id, next=0){
-  let select = document.getElementById(id);
-  return  select.options[select.selectedIndex+next].value;
-}
+// //pegar select 
+// function getSelect(id, next=0){
+//   let select = document.getElementById(id);
+//   return  select.options[select.selectedIndex+next].value;
+// }
 
-//validate service
-function valiService(attr){
-  return attr == 1 || attr == 2 ? true : false;
-}
+// //validate service
+// function valiService(attr){
+//   return attr == 1 || attr == 2 ? true : false;
+// }
 
-function valiHour(attr){
-  return Number.isInteger(attr) ? true : false;
-}
+// function valiHour(attr){
+//   return Number.isInteger(attr) ? true : false;
+// }
 
-//convert hours in milis
-function hmsToSecondsOnly(str) {
-  var p = str.split(':'),  s = 0, m = 1;
+// //convert hours in milis
+// function hmsToSecondsOnly(str) {
+//   var p = str.split(':'),  s = 0, m = 1;
 
-  while (p.length > 0) {
-    s += m * parseInt(p.pop(), 10);
-    m *= 60;
-  }
+//   while (p.length > 0) {
+//     s += m * parseInt(p.pop(), 10);
+//     m *= 60;
+//   }
 
-  return s;
-}
+//   return s;
+// }
 
-//mascara phone
-function mask(o, f) {
-  setTimeout(function() {
-    var v = mphone(o.value);
-    if (v != o.value) {
-      o.value = v;
-    }
-  }, 1);
-}
-//mascara phone
-function mphone(v) {
-  var r = v.replace(/\D/g, "");
-  r = r.replace(/^0/, "");
+// //mascara phone
+// function mask(o, f) {
+//   setTimeout(function() {
+//     var v = mphone(o.value);
+//     if (v != o.value) {
+//       o.value = v;
+//     }
+//   }, 1);
+// }
+// //mascara phone
+// function mphone(v) {
+//   var r = v.replace(/\D/g, "");
+//   r = r.replace(/^0/, "");
 
-  if (r.length > 10) {
-    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
-  }else if (r.length > 5) {
-    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-  }else if (r.length > 2) {
-    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
-  }else {
-    r = r.replace(/^(\d*)/, "($1");
-  }
+//   if (r.length > 10) {
+//     r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+//   }else if (r.length > 5) {
+//     r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+//   }else if (r.length > 2) {
+//     r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+//   }else {
+//     r = r.replace(/^(\d*)/, "($1");
+//   }
   
-  return r;
-}
+//   return r;
+// }
 
 
