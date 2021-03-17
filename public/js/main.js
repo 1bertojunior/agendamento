@@ -23,10 +23,8 @@ var meses = [
     "Dezembro"
 ];
 
-function addZero(n){
-    if (n <= 9) return "0" + n;
-    return n; 
-}
+//function add zero in number < 10
+addZero = (attr) => attr < 10 ? '0' + attr : attr;
 
 // ## FORMATAR
 function formateHours(d){

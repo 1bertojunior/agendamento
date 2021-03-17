@@ -1,88 +1,165 @@
-function valiForm(){
-  var name = formagendamento.nome.value;
-  var phone = formagendamento.phone.value;
-  var service = formagendamento.servico;
-  service = service.options[service.selectedIndex].value;
-  var date = getFormattedDate(formagendamento.data.value);
-  var hour = formagendamento.hora;
-  hour = hour.options[hour.selectedIndex].value;
+// function checkForm(step){
+
+//   if(step==1) { //validade step 1
+//     var city = formagendamento.city.value;
+//     if(!valiCity(city)) { // validate city
+//       formagendamento.city.style.border='1px solid #ff1f1f';
+//       return false; 
+//     }else{
+//       formagendamento.city.style.border='';
+//       return true;
+//     }
+//   }
+
+//   if(step == 2 ){// validade step 2
+//     var service = formagendamento.servico;
+//     service = service.options[service.selectedIndex].value;
+//     var date = getFormattedDate(formagendamento.data.value);
+//     var hour = formagendamento.hora;
+//     hour = hour.options[hour.selectedIndex].value;
+    
+//     if(!valiService(service)){ //validate service
+//       formagendamento.service.style.border='1px solid #ff1f1f';
+//       return false;
+//     }
+
+//     if((date == 'Invalid Date') || date  == ""){
+//       formagendamento.data.style.border='1px solid #ff1f1f';
+//       return false;
+//     }
+
+//     if(!valiHour(hmsToSecondsOnly(hour))){
+//       formagendamento.hora.style.border='1px solid #ff1f1f';
+//       return false;
+//     }
+
+//     //verrificar conflito de horarios
+//     if(valiHour(hmsToSecondsOnly(hour))){ //verrificar hour select valid      
+//       if(service==2){ // verrificar  se service == 2, para assim, prosseguir nas validações
+//         try{
+//           let nextHour =  hmsToSecondsOnly(getSelect('hour',1)); //get option select hour+1
+//           let plusHours = hmsToSecondsOnly(hour) + hmsToSecondsOnly('00:30:00'); //hour select plus 30 minutes
+//           if( plusHours < nextHour){ //verrificar conflito de hours
+//             console.log('*Conflito de horários! Este serviço requer mais horario')
+//             return false;
+//             // addWarningInput('hour', false,"*Conflito de horários! Este serviço requer mais horario"); // add Warning Text
+//           }else{
+//             // addWarningInput('service', true); // remove Warning Text
+//           }
+//         }catch(e){
+//           if(e){ //If fails, Do something else
+//             // console.log(e)
+//           }
+//         }
+//       }
+//     }
+    
+
+//   }
+
+  
+//   if(step == 3 ){// validade step 3
+//     var name = formagendamento.nome.value;
+//     var phone = formagendamento.phone.value;
+
+//     console.log(name)
+
+//     return false;
+//   }
+
+
+//   var name = formagendamento.nome.value;
+//   var phone = formagendamento.phone.value;
+//   var service = formagendamento.servico;
+//   service = service.options[service.selectedIndex].value;
+//   var date = getFormattedDate(formagendamento.data.value);
+//   var hour = formagendamento.hora;
+//   hour = hour.options[hour.selectedIndex].value;
   
   
-  //verrifying Name
-  if(name.length < 4){
-    console.log('ERRO name')
-    addWarningInput('name'); // add Warning Text
-    formagendamento.nome.style.border='2px solid #ff1f1f';
-    formagendamento.nome.focus();
-    return false;
-  }else{
-    formagendamento.nome.style.border=''; 
-    addWarningInput('name', true); // remove Warning Text
-  } //remove border red 
-  //verrifying Phone
-  if(phone.length < 15 || phone == ""){
-    console.log('ERRO phone')
-    addWarningInput('phone')
-    formagendamento.phone.style.border='2px solid #ff1f1f';
-    formagendamento.phone.focus();
-    return false;
-  }else{
-    addWarningInput('phone', true); // remove Warning Text
-    formagendamento.phone.style.border='';  //remove border red 
-  }
-  //verrifying Date
-  if(!(date == 'Invalid Date') || date  == ""){
-    console.log('ERRO date')
-    addWarningInput('date'); // add Warning Text
-    formagendamento.data.style.border='2px solid #ff1f1f';
-    return false;
-  }else{
-    addWarningInput('date', true); // remove Warning Text
-    formagendamento.data.style.border=''; //remove border red 
-  }
-  //verrifying Hour
-  if(!valiHour(hmsToSecondsOnly(hour)) ){
-    console.log('ERRO hour')
-    addWarningInput('hour'); // add Warning Text
-    formagendamento.hour.style.border='2px solid #ff1f1f';
-    return false;
-  }else{
-    addWarningInput('hour', true); // remove Warning Text
-    formagendamento.hour.style.border='';
-  }
+//   //verrifying Name
+//   if(name.length < 4){
+//     console.log('ERRO name')
+//     addWarningInput('name'); // add Warning Text
+//     formagendamento.nome.style.border='2px solid #ff1f1f';
+//     formagendamento.nome.focus();
+//     return false;
+//   }else{
+//     formagendamento.nome.style.border=''; 
+//     addWarningInput('name', true); // remove Warning Text
+//   } //remove border red 
+//   //verrifying Phone
+//   if(phone.length < 15 || phone == ""){
+//     console.log('ERRO phone')
+//     addWarningInput('phone')
+//     formagendamento.phone.style.border='2px solid #ff1f1f';
+//     formagendamento.phone.focus();
+//     return false;
+//   }else{
+//     addWarningInput('phone', true); // remove Warning Text
+//     formagendamento.phone.style.border='';  //remove border red 
+//   }
+//   //verrifying Date
+//   if(!(date == 'Invalid Date') || date  == ""){
+//     console.log('ERRO date')
+//     addWarningInput('date'); // add Warning Text
+//     formagendamento.data.style.border='2px solid #ff1f1f';
+//     return false;
+//   }else{
+//     addWarningInput('date', true); // remove Warning Text
+//     formagendamento.data.style.border=''; //remove border red 
+//   }
+//   //verrifying Hour
+//   if(!valiHour(hmsToSecondsOnly(hour)) ){
+//     console.log('ERRO hour')
+//     addWarningInput('hour'); // add Warning Text
+//     formagendamento.hour.style.border='2px solid #ff1f1f';
+//     return false;
+//   }else{
+//     addWarningInput('hour', true); // remove Warning Text
+//     formagendamento.hour.style.border='';
+//   }
 
-  //verrifying Service
-  if(!valiService(service)){//verrificar service != 1 OR 2
-    console.log('ERRO service invalid')
-    addWarningInput('service'); // add Warning Text
-    formagendamento.servico.style.border='2px solid #ff1f1f';
-    return false;
-  }else{
-    addWarningInput('service', true); // remove Warning Text
-    formagendamento.servico.style.border=''; //remove border red
-  } 
+//   //verrifying Service
+//   if(!valiService(service)){//verrificar service != 1 OR 2
+//     console.log('ERRO service invalid')
+//     addWarningInput('service'); // add Warning Text
+//     formagendamento.servico.style.border='2px solid #ff1f1f';
+//     return false;
+//   }else{
+//     addWarningInput('service', true); // remove Warning Text
+//     formagendamento.servico.style.border=''; //remove border red
+//   } 
 
-  //verrificar conflito de horarios
-  if(valiHour(hmsToSecondsOnly(hour))){ //verrificar hour select valid
-    if(service==2){ // verrificar  se service == 2, para assim, prosseguir nas validações
-      let nextHour =  getSelect('hour',1); //get option select hour+1
-      let plusHours = hmsToSecondsOnly(hour) + hmsToSecondsOnly('00:30:00'); //hour select plus 30 minutes
+//   //verrificar conflito de horarios
+//   if(valiHour(hmsToSecondsOnly(hour))){ //verrificar hour select valid
+//     if(service==2){ // verrificar  se service == 2, para assim, prosseguir nas validações
+//       let nextHour =  getSelect('hour',1); //get option select hour+1
+//       let plusHours = hmsToSecondsOnly(hour) + hmsToSecondsOnly('00:30:00'); //hour select plus 30 minutes
       
-      if( plusHours < hmsToSecondsOnly(nextHour)){ //verrificar conflito de hours
-        addWarningInput('hour', false,"*Conflito de horários! Este serviço requer mais horario"); // add Warning Text
-        return false;
-      }else{
-        addWarningInput('service', true); // remove Warning Text
-      }
-    }
-  }
+//       if( plusHours < hmsToSecondsOnly(nextHour)){ //verrificar conflito de hours
+//         addWarningInput('hour', false,"*Conflito de horários! Este serviço requer mais horario"); // add Warning Text
+//         return false;
+//       }else{
+//         addWarningInput('service', true); // remove Warning Text
+//       }
+//     }
+//   }
   
+// }
+
+//function validate city
+function valiCity(attr){
+  return attr == 1 || attr == 2 ? true : false;
 }
+
+
+
 
 //formatted date
 function getFormattedDate(d){
   d = d.split(" "); //transforme string in array 
-  d = (d[2]) +"-"+ addZero(meses.indexOf(d[1])+1) +"--"+  addZero((d[0]));
+  d = (d[2]) +"-"+ addZero(meses.indexOf(d[1])+1) +"-"+  addZero((d[0]));
   return new Date(d);
 }
 //function add zero in number < 10
@@ -124,8 +201,7 @@ function getSelect(id, next=0){
 
 //validate service
 function valiService(attr){
-  if(attr == 1 || attr == 2) return attr;
-  return 0;
+  return attr == 1 || attr == 2 ? true : false;
 }
 
 function valiHour(attr){

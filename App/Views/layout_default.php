@@ -5,7 +5,6 @@
         <meta charset="utf-8">
         <title><?= $this->view->title ?> - Agendamento</title>
         <link rel="sortcut icon" href="img/calendario-icon.png" type="image/x-icon" />
-
     </head>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -16,9 +15,11 @@
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
 
+    <!-- JS - Personalizados -->
+    <script src="js/datepicker-personalizado.js"></script> 
     <script src="js/ajax-custom.js"></script> 
-    <script src="js/logica-custom.js"></script> 
-    <script src="js/main.js"></script> 
+    <script src="js/main.js"></script>     
+    <!-- <script src="js/logica-custom.js"></script>  -->
     
 
     <style rel="stylesheet" type="text/css">
@@ -78,7 +79,7 @@
                 background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;  /* Imagem de fundo (Seta) */
                 background-position: 99% center;  /*Posição da imagem do background*/  
                 /* padding: 10px; */
-                border: 1px solid red;
+                border: 1px solid #1c1c1c;
                 border-radius: 4px;
                 box-sizing: border-box;
                 width: 100%;
@@ -88,7 +89,7 @@
             /* INPUT */
             #form input{
                 padding: 10px;
-                border: 1px solid red;
+                border: 1px solid #1c1c1c;
                 border-radius: 4px;
                 outline: none;
                 box-sizing: border-box;
@@ -199,31 +200,33 @@
 
     <?= $this->content() ?>
 
-    <!-- JS - Personalizados -->
-    <script src="js/datepicker-personalizado.js"></script> 
-    <script src="js/validate-form.js"></script> 
-
+    
 
     <script>
         const nextFirts = document.querySelector('#nextFirts'); //next firts
         const prevSec = document.querySelector('#prevSec'); //prev Sec 
         const nextSec = document.querySelector('#nextSec'); //next Sec
         const prevThird = document.querySelector('#prevThird'); //prev Third
+        const send = document.querySelector('#send'); 
         var atual, prev, next, index = 1;
         
         //firts
         nextFirts.onclick = function() {
-            // PROGRESS
-            atual =  (this.parentNode).parentNode; //pegando elemento pai
-            next = atual.nextElementSibling; //pegando o proximo elemento
-            atual.classList.remove("active"); // hide
-            next.classList.add("active"); //show
-            var progress = document.querySelector('#progress'); //progress
-            progress = progress.children[index++]; //progress
-            progress.classList.add("active-progress") //progress
 
-            // request horario
-            requestHorario();
+            if(checkForm(1)){
+                // PROGRESS
+                atual =  (this.parentNode).parentNode; //pegando elemento pai
+                next = atual.nextElementSibling; //pegando o proximo elemento
+                atual.classList.remove("active"); // hide
+                next.classList.add("active"); //show
+                var progress = document.querySelector('#progress'); //progress
+                progress = progress.children[index++]; //progress
+                progress.classList.add("active-progress") //progress
+
+                // request horario
+                requestHorario();
+            }
+            
         }
 
         //sec
@@ -240,15 +243,17 @@
         }
 
         nextSec.onclick = function() {
-            atual =  (this.parentNode).parentNode; //pegando elemento pai
-            next = atual.nextElementSibling; //pegando o proximo elemento
-            
-            atual.classList.remove("active"); // hide
-            next.classList.add("active"); //show
-            
-            var progress = document.querySelector('#progress'); //progress
-            progress = progress.children[index]; //progress
-            progress.classList.add("active-progress") //progress 
+            if(checkForm(2)){
+                atual =  (this.parentNode).parentNode; //pegando elemento pai
+                next = atual.nextElementSibling; //pegando o proximo elemento
+                
+                atual.classList.remove("active"); // hide
+                next.classList.add("active"); //show
+                
+                var progress = document.querySelector('#progress'); //progress
+                progress = progress.children[index]; //progress
+                progress.classList.add("active-progress") //progress 
+            }            
         }
 
         //third
@@ -263,6 +268,54 @@
             progress = progress.children[index];
             progress.classList.remove("active-progress")
         }
+
+        send.onclick = function(){
+            
+        }
+
+
+        function checkForm(step){
+            if(step == 1){ //CHECK STEP 1
+                var city = formagendamento.city;
+                city = city.options[city.selectedIndex].value;
+
+                // CHECK CITY
+                if(!checkCity(city)){
+                    formagendamento.city.style.border='1px solid #ff1f1f';
+                    return false;
+                }
+
+                return true;
+            }
+
+            if(step == 2){ //CHECK STEP 2
+                var service = formagendamento.servico;
+                service = service.options[service.selectedIndex].value;
+                var date = formatarData(formagendamento.data.value);
+                var hour = formagendamento.hora;
+                hour = hour.options[hour.selectedIndex].value;
+
+                if(!checkService(service)){
+                    formagendamento.service.style.border='1px solid #ff1f1f';
+                    return false;
+                }
+
+                console.log(service)
+                console.log(date)
+                console.log(hour)
+
+                return false;
+            }
+        }   
+
+        //##CHECK
+        //function validate city
+        checkCity = (attr) => attr == 1 || attr == 2 ? true : false;
+
+        //validate service
+        checkService = (attr) => attr == 1 || attr == 2 ? true : false;
+
+        
     </script>
 
 

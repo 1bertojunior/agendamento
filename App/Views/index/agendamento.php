@@ -54,15 +54,15 @@
                     <div id="step3" class="step">
                         <h2>Horário</h2>
                         <h3>Nome</h3>
-                        <input type="text" name="name" placeholder="Seu nome">
+                        <input type="text" name="name" placeholder="Seu nome" required>
                         <h3>Sobrenome</h3>
-                        <input type="text" name="surname" placeholder="Sobrenome">
+                        <input type="text" name="surname" placeholder="Sobrenome" required>
                         <h3>Telefone</h3>
                         <input Placeholder="(00) 00000-0000" type="text" name="phone" class="form-control" id="phone" name="phone"
                                 onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"  required>
                         <div>
                             <button class="prev botoes" id="prevThird" type="button">Prev</button>
-                            <button class="send botoes" id="send" type="submit">Enviar</button>
+                            <button class="send botoes" id="send" type="submit" onclick="return valiForm(3)">Enviar</button>
                              <!-- class="btn btn-success btn-lg btn-block" onclick="return valiForm()" -->
                         </div>
                     </div>
