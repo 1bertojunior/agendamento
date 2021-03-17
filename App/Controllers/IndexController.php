@@ -101,13 +101,6 @@ class IndexController extends Action {
 		$agendar->__set('start', $start);
 		$agendar->__set('end', $end);
 
-		// echo $agendar->__get("city") . "<br>";
-		// echo $agendar->__get("name"). "<br>";
-		// echo $agendar->__get("phone"). "<br>";
-		// echo $agendar->__get("service"). "<br>";
-		// echo $agendar->__get("start"). "<br>";
-		// echo $agendar->__get("end"). "<br>";
-
 		//validar
 		if($agendar->validar() && count($agendar->getAgendamentoDouble()) == 0){
 			//salvar
@@ -141,7 +134,7 @@ class IndexController extends Action {
 				'name' => $agendar->__get('name'),
 				'date' => $agendar->__get('start')
 			];
-			$this->render('agendamento', 'layout1', 'Agendamento online');
+			$this->render('agendamento', 'layout_default', 'Agendamento online');
 		}	
 		
 	}
