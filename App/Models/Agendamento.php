@@ -125,25 +125,6 @@
 
         }
 
-        //metodo p/ pegar datas dos feriados
-        public function getHolidays(){
-            $query = "SELECT dateHoliday FROM holidays WHERE DATE_FORMAT(dateHoliday, '%Y') = '2021'";
-            //colocar ano dinâmico
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-
-            $date = "";
-
-            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
-                if(!($date == "")) $date .= ",";
-                $date .= $row['dateHoliday'];
-            }
-
-            $holidays = [$date];
-
-            echo json_encode($holidays);
-        }
-
         // search agendamento by id AND phone
         public function getAgendamento(){
             $query = "SELECT id, fk_city, nome, phone, fk_servico, data, data_end FROM agendamentos
@@ -193,21 +174,32 @@
         }
 
         //metodo p/ pegar dias off 
-        public function getDaysOff($city = 1){
-            $query = "SELECT day, fk_city FROM daysoff";
+        public function getDaysOff(){
+            $query = "SELECT day  FROM daysoff WHERE fk_city = :city AND status = :active";
             $stmt = $this->db->prepare($query);
-            $stmt->bindValue(":city", $city);
+            $stmt->bindValue(':city', $this->__get('city'));
+            $stmt->bindValue(':active', 1);
             $stmt->execute();
 
-            $date = "";
+            $days = [];
+
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) array_push($days, $row['day']);
+
+            echo json_encode($days);
+        }
+
+        //metodo p/ pegar datas dos feriados
+        public function getHolidays(){
+            $query = "SELECT dateHoliday FROM holidays WHERE DATE_FORMAT(dateHoliday, '%Y') = '2021'";
+            //colocar ano dinâmico
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+
+            $holidays = [];
 
             while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
-                if(!($date == "")) $date .= ",";
-                $date .= $row['day'];
+                array_push($holidays, $row['dateHoliday']);
             }
-
-            $holidays = [$date];
-
             echo json_encode($holidays);
         }
         

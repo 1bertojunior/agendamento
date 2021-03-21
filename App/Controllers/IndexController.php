@@ -34,13 +34,17 @@ class IndexController extends Action {
 	}
 
 	public function holidays(){
-		$holidays = Container::getModel('Agendamento');
-		$holidays->getHolidays();
+		$agendar = Container::getModel('Agendamento');
+		$agendar->getHolidays();
 	}
 
 	public function daysoff(){
-		$daysoff = Container::getModel('Agendamento');
-		$daysoff->getDaysOff();
+		$agendar = Container::getModel('Agendamento');
+
+		$agendar->__set('city', $_GET['city'] ?? 1);
+		// echo $agendar->__get("city");
+
+		$agendar->getDaysOff();
 
 	}
 
