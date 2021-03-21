@@ -3,13 +3,12 @@
 $(document).ready(function(){
   // initComponent(); /*initialisation des composants*/
 });
-  
-/* Fonction d'initialisation des composants */
+var dateHolidays = ajax('holidays'); //["2021-03-24", '2020-11-02', '2020-11-15', '2020-12-25']; //feriados
+let daysOfWeekDisabled = ajax('daysoff'); // dias da semana off
+
+/* function d'initialisation des composants */
 function initDatePicker(){
-
-  var dateHolidays = ajax('holidays'); //["2021-03-24", '2020-11-02', '2020-11-15', '2020-12-25']; //feriados
-  let daysOfWeekDisabled = ajax('daysoff'); // dias da semana off
-
+  
   $('#datepicker-default').datepicker({ 
     language: "pt-BR",
     format: "d MM yyyy",
@@ -19,20 +18,19 @@ function initDatePicker(){
     todayBtn: true,
     maxViewMode: 1,
     multidate: false,
-    todayHighlight : true
-    // ,
-    // beforeShowDay: function (d) {
-    //                 let dmy = formatDate(d);
-    //                 if(dateHolidays.indexOf(dmy) != -1) return false; return true;
-    // }          
+    todayHighlight : true,
+
+    //disable date
+    beforeShowDay: function(d){
+      let dmy = formatDate(d);
+      return dateHolidays.indexOf(dmy) != -1 ? false : true;
+    }  
+
   });
 
   // inicar data com hoje
-  $('#datepicker-default').datepicker("setDate", new Date());
+  $('#datepicker-default').datepicker("setDate", dateToday(new Date()));
 }
-  
-  
-
 
 function ajax(url){ 
   var xhr = new XMLHttpRequest();
@@ -52,9 +50,20 @@ function ajax(url){
 }
 
 function dateToday(d){
-  while( daysOfWeekDisabled.indexOf(d.getDay().toString()) != -1 || dateHolidays.indexOf(formatDate(d)) != -1){
+  // while( daysOfWeekDisabled.indexOf(d.getDay().toString()) != -1 || dateHolidays.indexOf(formatDate(d)) != -1){
+  //   d = incrementDay(d)
+  // }
+
+  console.log(daysOfWeekDisabled)
+
+  let daysOff = JSON.parse(daysOfWeekDisabled);
+
+  console.log(daysOff.indexOf("1"))
+
+  if(daysOff.indexOf("0") == -1 ){
     d = incrementDay(d)
   }
+
   return d
 }
   

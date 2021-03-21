@@ -27,7 +27,7 @@ nextFirts.onclick = function() {
 
 //sec
 prevSec.onclick = function() {
-    
+    window.location.href = "/agendamento";
     atual =  (this.parentNode).parentNode; //pegando elemento pai
     prev = atual.previousElementSibling; //pegando o proximo elemento
             
