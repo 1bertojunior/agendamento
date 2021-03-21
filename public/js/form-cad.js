@@ -17,7 +17,6 @@ nextFirts.onclick = function() {
         progress = progress.children[index++]; //progress
         progress.classList.add("active-progress") //progress
 
-
         //request datapicker
         initDatePicker();
         
@@ -28,6 +27,7 @@ nextFirts.onclick = function() {
 
 //sec
 prevSec.onclick = function() {
+    
     atual =  (this.parentNode).parentNode; //pegando elemento pai
     prev = atual.previousElementSibling; //pegando o proximo elemento
             
